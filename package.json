@@ -2,7 +2,8 @@
   "name": "nestjs",
   "version": "0.0.0",
   "scripts": {
-    "start": "nest start",
+    "build": "nest build",
+    "start": "node dist/main.js",
     "start:dev": "nest start --watch",
     "start:prod": "node dist/main",
     "lint": "eslint --ext .ts src",
@@ -32,6 +33,7 @@
   "dependencies": {
     "@nestjs/cli": "^11.0.16",
     "@nestjs/common": "^11.0.16",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.16",
     "@nestjs/platform-express": "^11.0.16",
     "@nestjs/swagger": "^11.2.5",
