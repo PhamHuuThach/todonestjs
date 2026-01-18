@@ -16,8 +16,6 @@ import { ConfigModule } from "@nestjs/config";
       type: "mongodb",
       url: process.env.DATABASE_URL,
       database: process.env.DATABASE_NAME,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
 
       // 2 tuỳ chọn TLS/SSL để kết nối Atlas
       ssl: true,
