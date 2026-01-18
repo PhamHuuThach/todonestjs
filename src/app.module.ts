@@ -1,10 +1,10 @@
 import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
+import { TypeOrmModule } from "@nestjs/typeorm";
 import { TodosModule } from "./todos/todos.module";
 import { CategoriesModule } from "./categories/categories.module";
-import { TypeOrmModule } from "@nestjs/typeorm";
 import { Todo } from "./todos/entities/todo.entity";
 import { Category } from "./categories/entities/category.entity";
-import { ConfigModule } from "@nestjs/config";
 
 @Module({
   imports: [
@@ -17,9 +17,9 @@ import { ConfigModule } from "@nestjs/config";
       url: process.env.DATABASE_URL,
       database: process.env.DATABASE_NAME,
 
-      // 2 tuỳ chọn TLS/SSL để kết nối Atlas
-      ssl: true,
-      sslValidate: false, // ⚠️ chỉ dùng khi SSL verify gây lỗi
+      // ✔ dùng TLS đúng driver hiện tại
+      tls: true,
+      tlsAllowInvalidCertificates: true,
 
       entities: [Todo, Category],
       synchronize: true,
