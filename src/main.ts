@@ -6,10 +6,10 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // validation toan cuc
+  // validation toàn cục
   app.useGlobalPipes(new ValidationPipe());
 
-  // cau hinh swagger
+  // cấu hình swagger
   const config = new DocumentBuilder()
     .setTitle("Nest API")
     .setDescription("The Nest API description")
@@ -17,7 +17,12 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api/docs", app, document);
-  const port = process.env.PORT || 3000;
-  await app.listen(port);
+
+  const port = parseInt(process.env.PORT as string, 10) || 3000;
+
+  // ✨ MUST dùng 0.0.0.0 để Render detect port
+  await app.listen(port, "0.0.0.0");
+
+  console.log(`🚀 Server listening on http://0.0.0.0:${port}`);
 }
 bootstrap();
