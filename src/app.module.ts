@@ -40,11 +40,7 @@ import { CategoriesModule } from "./categories/categories.module";
 
 @Module({
   imports: [
-    // Load biến môi trường từ .env
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: ".env",
-    }),
+    ConfigModule.forRoot({ isGlobal: true }),
 
     // Kết nối MongoDB Atlas bằng Mongoose
     MongooseModule.forRootAsync({
