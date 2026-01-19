@@ -1,14 +1,21 @@
 // src/modules/categories/categories.module.ts
 import { Module } from "@nestjs/common";
-import { TypeOrmModule } from "@nestjs/typeorm";
+import { MongooseModule } from "@nestjs/mongoose";
 import { CategoriesService } from "./categories.service";
 import { CategoriesController } from "./categories.controller";
-import { Category } from "./entities/category.entity";
+import { Category, CategorySchema } from "./schema/category.schema";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Category])],
+  imports: [
+    MongooseModule.forFeature([
+      { name: Category.name, schema: CategorySchema },
+    ]),
+  ],
+  exports: [
+    MongooseModule, // 👈 bắt buộc export
+    CategoriesService,
+  ],
   controllers: [CategoriesController],
   providers: [CategoriesService],
-  exports: [CategoriesService], // Export để TodosService có thể dùng
 })
 export class CategoriesModule {}

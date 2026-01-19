@@ -18,7 +18,14 @@ export class CreateTodoDto {
   })
   @IsString({ message: "Mô tả phải là chuỗi ký tự" })
   @IsOptional()
-  desscription: string;
+  description: string;
+
+  @ApiProperty({
+    description: "ID của danh mục (nếu có)",
+    example: "65a1b2c3d4e5f67890123456",
+    required: false,
+  })
+  categoryId: string;
 
   @ApiProperty({
     example: "abc...",
